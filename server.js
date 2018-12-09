@@ -18,7 +18,10 @@ const db = require("./config/keys").mongoURI;
 
 // connecting to db
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
   .then(() => console.log("db connected"))
   .catch(err => console.log(err));
 
@@ -30,8 +33,7 @@ app.use("/api/posts", posts);
 app.use(passport.initialize());
 
 // require passport config file
-require('./config/passport')(passport);
-
+require("./config/passport")(passport);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`server running on ${port}`));
