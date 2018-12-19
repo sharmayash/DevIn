@@ -3,6 +3,9 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
+//Load Validation files
+const validateProfileInput = require("../../validation/profile");
+
 // load models
 const Profile = require("../../models/profile");
 const Auth = require("../../models/Auth");
@@ -21,26 +24,32 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user.id })
+      .populate("users", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
-          errors.noProfile = "User profile not exist";
-          res.status(404).json(errors);
+          errors.noprofile = "User profile not exist";
+          return res.status(404).json(errors);
         }
         res.json(profile);
       })
-      .catch(err => {
-        res.status(404).json(err);
-      });
+      .catch(err =>  res.status(404).json(err));
   }
 );
 
 // create / update user profile (protected route)
 
-router.get(
+router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    const { errors, isValid } = validateProfileInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
     const profileFields = {};
+
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.company) profileFields.company = req.body.company;
@@ -65,7 +74,7 @@ router.get(
         // update profile
         Profile.findOneAndUpdate(
           { user: req.user.id },
-          { $set: profileUpdateFields },
+          { $set: profileFields },
           { new: true }
         ).then(profile => res.json(profile));
       } else {
