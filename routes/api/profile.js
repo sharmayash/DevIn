@@ -10,11 +10,13 @@ const validateProfileInput = require("../../validation/profile");
 const Profile = require("../../models/profile");
 const Auth = require("../../models/Auth");
 
-router.get("/test", (req, res) =>
-  res.json({
-    msg: "profile connected"
-  })
-);
+// test route
+
+// router.get("/test", (req, res) =>
+//   res.json({
+//     msg: "profile connected"
+//   })
+// );
 
 // get current user profile (protected route)
 
@@ -24,7 +26,7 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user.id })
-      .populate("users", ["name", "avatar"])
+      .populate("user", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
           errors.noprofile = "User profile not exist";
