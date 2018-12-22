@@ -14,11 +14,11 @@ const validateLoginInput = require("../../validation/login");
 const Auth = require("../../models/Auth");
 
 // test the page
-router.get("/test", (req, res) =>
-  res.json({
-    msg: "auth connected"
-  })
-);
+// router.get("/test", (req, res) =>
+//   res.json({
+//     msg: "auth connected"
+//   })
+// );
 
 // register new user
 router.post("/register", (req, res) => {
