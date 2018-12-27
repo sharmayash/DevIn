@@ -35,5 +35,5 @@ app.use(passport.initialize());
 // require passport config file
 require("./config/passport")(passport);
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8090;
 app.listen(port, () => console.log(`server running on ${port}`));

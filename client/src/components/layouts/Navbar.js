@@ -1,42 +1,43 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
     return (
       <nav className="blue-grey darken-4">
         <div className="nav-wrapper container">
-          <a href="!#" className="brand-logo">
+          <Link to="/" className="brand-logo">
             DevConnector
-          </a>
+          </Link>
           <a href="!#" data-target="mobile-demo" className="sidenav-trigger">
             <i className="material-icons">menu</i>
           </a>
           <ul className="right hide-on-med-and-down">
             <li>
-              <a href="Developers.html">Developers</a>
+              <Link to="/developers">Developers</Link>
             </li>
             <li>
-              <a href="Login.html">Login</a>
+              <Link to="/login">Login</Link>
             </li>
             <li>
-              <a href="register.html">Sign up</a>
+              <Link to="/register">Sign up</Link>
             </li>
           </ul>
           <ul className="sidenav blue-grey darken-4" id="mobile-demo">
             <li>
-              <a href="Developers.html" className="white-text">
+              <Link to="/developers" className="white-text">
                 Developers
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="Login.html" className="white-text">
+              <Link to="/login" className="white-text">
                 Login
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="register.html" className="white-text">
+              <Link to="/register" className="white-text">
                 Sign up
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
