@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
 
 // importing components
 import Navbar from "./components/layouts/Navbar";
@@ -12,17 +14,19 @@ import Login from "./components/auth/Login";
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="App blue-grey darken-2">
-          <Navbar />
-          <Route exact path="/" component={Landing} />
-          <div className="container">
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App blue-grey darken-2">
+            <Navbar />
+            <Route exact path="/" component={Landing} />
+            <div className="container">
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
