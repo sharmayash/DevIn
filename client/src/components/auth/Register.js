@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { connect } from "react-redux";
@@ -18,6 +18,12 @@ class Register extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   componentWillReceiveProps(nextProps) {
