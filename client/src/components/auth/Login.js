@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -63,52 +63,24 @@ class Login extends Component {
               <div className="card z-depth-5 blue-grey darken-4">
                 <div className="card-content white-text">
                   <div className="row section">
-                    <div className="input-field col s12">
-                      <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                        className={classnames({
-                          validate: errors.email
-                        })}
-                        placeholder="Email Address"
-                      />
-                      {errors.email && (
-                        <span
-                          className="helper-text red-text"
-                          //   data-error="wrong"
-                          //   data-success="right"
-                        >
-                          {errors.email}
-                        </span>
-                      )}
-                    </div>
+                    <TextFieldGroup
+                      placeholder="Email Address"
+                      name="email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      error={errors.email}
+                    />
                   </div>
                   <div className="row section">
-                    <div className="input-field col s12">
-                      <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                        className={classnames({
-                          validate: errors.password
-                        })}
-                        placeholder="Password"
-                      />
-                      {errors.password && (
-                        <span
-                          className="helper-text red-text"
-                          //   data-error="wrong"
-                          //   data-success="right"
-                        >
-                          {errors.password}
-                        </span>
-                      )}
-                    </div>
+                  <TextFieldGroup
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      error={errors.password}
+                    />
                   </div>
                   <div className="row section">
                     <div className="card-action">

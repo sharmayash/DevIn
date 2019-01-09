@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import classnames from "classnames";
+import TextFieldGroup from "../common/TextFieldGroup";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 
@@ -22,7 +22,7 @@ class Register extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/login");
     }
   }
 
@@ -67,94 +67,38 @@ class Register extends Component {
               <div className="card z-depth-5 blue-grey darken-4">
                 <div className="card-content white-text">
                   <div className="row section">
-                    <div className="input-field col s12">
-                      <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        value={this.state.name}
-                        onChange={this.onChange}
-                        className={classnames({
-                          validate: errors.name
-                        })}
-                        placeholder="Name"
-                      />
-                      {errors.name && (
-                        <span
-                          className="helper-text red-text"
-                          //   data-error="wrong"
-                          //   data-success="right"
-                        >
-                          {errors.name}
-                        </span>
-                      )}
-                    </div>
-                    <div className="input-field col s12">
-                      <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.onChange}
-                        className={classnames({
-                          validate: errors.email
-                        })}
-                        placeholder="Email Address"
-                      />
-                      {errors.email && (
-                        <span
-                          className="helper-text red-text"
-                          //   data-error="wrong"
-                          //   data-success="right"
-                        >
-                          {errors.email}
-                        </span>
-                      )}
-                    </div>
-                    <div className="input-field col s12">
-                      <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.onChange}
-                        className={classnames({
-                          validate: errors.password
-                        })}
-                        placeholder="Password"
-                      />
-                      {errors.password && (
-                        <span
-                          className="helper-text red-text"
-                          //   data-error="wrong"
-                          //   data-success="right"
-                        >
-                          {errors.password}
-                        </span>
-                      )}
-                    </div>
-                    <div className="input-field col s12">
-                      <input
-                        id="password2"
-                        type="password"
-                        name="password2"
-                        value={this.state.password2}
-                        onChange={this.onChange}
-                        className={classnames({
-                          validate: errors.password2
-                        })}
-                        placeholder="Confirm Password"
-                      />
-                      {errors.password2 && (
-                        <span
-                          className="helper-text red-text"
-                          //   data-error="wrong"
-                          //   data-success="right"
-                        >
-                          {errors.password2}
-                        </span>
-                      )}
-                    </div>
+                    <TextFieldGroup
+                      placeholder="Name"
+                      name="name"
+                      type="text"
+                      value={this.state.name}
+                      onChange={this.onChange}
+                      error={errors.name}
+                    />
+                    <TextFieldGroup
+                      placeholder="Email Address"
+                      name="email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      error={errors.email}
+                    />
+                    <TextFieldGroup
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      error={errors.password}
+                    />
+                    <TextFieldGroup
+                      placeholder="Confirm Password"
+                      name="password2"
+                      type="password"
+                      value={this.state.password2}
+                      onChange={this.onChange}
+                      error={errors.password2}
+                    />
                   </div>
                   <div className="card-action">
                     <button
